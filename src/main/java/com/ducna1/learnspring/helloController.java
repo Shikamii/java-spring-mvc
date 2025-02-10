@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class helloController {
     @GetMapping("/")
     public String index() {
-        return "Hello, DucNA1";
+        return "Hello, DucNA1 from with Hblab Spring Boot";
     }
 
     @GetMapping("/user")
