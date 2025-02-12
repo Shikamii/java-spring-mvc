@@ -24,6 +24,14 @@ public class UserController {
     model.addAttribute("name", "DucNA1 from Hblab");
     return "hello";
   }
+
+  @RequestMapping("/admin/user")
+  public String getUserPage(Model model) {
+    String test = this.userService.handleHello();
+    model.addAttribute("eric", test);
+    model.addAttribute("name", "DucNA1 from Hblab");
+    return "admin/user/create";
+  }
 }
 // @RestController
 // public class UserController {
