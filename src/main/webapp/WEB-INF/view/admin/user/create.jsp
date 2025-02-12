@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> <%@taglib
-prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form"%>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,30 +23,38 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <div class="col-md-6 col-12 mx-auto">
           <h3>Create a user</h3>
           <hr />
-          <form action="">
+          <form:form
+            action="/admin/user/create"
+            method="POST"
+            modelAttribute="newUser"
+          >
             <div class="mb-3">
               <label class="form-label">Email:</label>
-              <input type="email" class="form-control" />
+              <form:input type="email" class="form-control" path="email" />
             </div>
             <div class="mb-3">
               <label class="form-label">Password:</label>
-              <input type="password" class="form-control" />
+              <form:input
+                type="password"
+                class="form-control"
+                path="password"
+              />
             </div>
             <div class="mb-3">
               <label class="form-label">Phone number:</label>
-              <input type="text" class="form-control" />
+              <form:input type="text" class="form-control" path="phone" />
             </div>
             <div class="mb-3">
               <label class="form-label">Full name:</label>
-              <input type="text" class="form-control" />
+              <form:input type="text" class="form-control" path="fullName" />
             </div>
             <div class="mb-3">
               <label class="form-label">Address:</label>
-              <input type="text" class="form-control" />
+              <form:input type="text" class="form-control" path="address" />
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
-          </form>
+          </form:form>
         </div>
       </div>
     </div>
