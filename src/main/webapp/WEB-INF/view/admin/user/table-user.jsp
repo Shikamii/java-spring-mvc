@@ -41,38 +41,18 @@ uri="http://www.springframework.org/tags/form"%>
             </thead>
 
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>DucNA1</td>
-                <td>Nguyen Anh Duc</td>
-                <td>
-                  <button class="btn btn-success">View</button>
-                  <button class="btn btn-warning mx-2">Edit</button>
-                  <button class="btn btn-danger mx-2">Delete</button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>QuyetNV</td>
-                <td>Nguyen Van Quyet</td>
-                <td>
-                  <button class="btn btn-success">View</button>
-                  <button class="btn btn-warning mx-2">Edit</button>
-                  <button class="btn btn-danger mx-2">Delete</button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>HangVT</td>
-                <td>Vu Thi Thanh Hang</td>
-                <td>
-                  <button class="btn btn-success">View</button>
-                  <button class="btn btn-warning mx-2">Edit</button>
-                  <button class="btn btn-danger mx-2">Delete</button>
-                </td>
-              </tr>
+              <c:forEach var="user" items="${users}">
+                <tr>
+                  <td>${user.id}</td>
+                  <td>${user.email}</td>
+                  <td>${user.fullName}</td>
+                  <td>
+                    <button class="btn btn-success">View</button>
+                    <button class="btn btn-warning mx-2">Edit</button>
+                    <button class="btn btn-danger mx-2">Delete</button>
+                  </td>
+                </tr>
+              </c:forEach>
             </tbody>
           </table>
         </div>

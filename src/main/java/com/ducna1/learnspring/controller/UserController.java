@@ -38,6 +38,9 @@ public class UserController {
 
   @RequestMapping("/admin/user")
   public String getUserPage(Model model) {
+    // lay ra danh sach user tu service
+    List<User> users = this.userService.getAllUsers();
+    model.addAttribute("users", users); // binding danh sách user vào model để hiển thị lên view
     return "admin/user/table-user"; // trang hiển thị danh sách user
   }
 
@@ -52,7 +55,7 @@ public class UserController {
   public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
     System.out.println("Create user      " + hoidanit);
     this.userService.handleSaveUser(hoidanit);
-    return "hello";
+    return "redirect:/admin/user"; // sau khi tạo xong user -> chuyển hướng về trang danh sách user
   }
 }
 
