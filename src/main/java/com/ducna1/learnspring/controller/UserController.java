@@ -1,5 +1,7 @@
 package com.ducna1.learnspring.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,14 @@ public class UserController {
   public String getHomePage(Model model) {
     model.addAttribute("eric", "test");
     model.addAttribute("name", "DucNA1 from Hblab");
+
+    List<User> users = this.userService.getAllUsers();
+    System.out.println("Users: " + users);
+
+
+    List<User> usersByEmail = this.userService.getUserByEmail("1@gmail.com");
+    System.out.println("Users by email: " + usersByEmail);
+
     return "hello";
   }
 
@@ -41,6 +51,11 @@ public class UserController {
     return "hello";
   }
 }
+
+
+
+
+// viet theo mô hình restAPI 
 // @RestController
 // public class UserController {
 
