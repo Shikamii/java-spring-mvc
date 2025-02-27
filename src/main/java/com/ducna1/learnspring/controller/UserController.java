@@ -18,7 +18,6 @@ import com.ducna1.learnspring.service.UserService;
 public class UserController {
   private final UserService userService;
 
-
   public UserController(UserService userService) {
     this.userService = userService;
   }
@@ -31,7 +30,6 @@ public class UserController {
     List<User> users = this.userService.getAllUsers();
     System.out.println("Users: " + users);
 
-
     List<User> usersByEmail = this.userService.getUserByEmail("1@gmail.com");
     System.out.println("Users by email: " + usersByEmail);
 
@@ -40,10 +38,16 @@ public class UserController {
 
   @RequestMapping("/admin/user")
   public String getUserPage(Model model) {
-    model.addAttribute("newUser", new User()); // tạo một đối tượng User mới để binding với form
-    return "admin/user/create";
+    return "admin/user/table-user"; // trang hiển thị danh sách user
   }
 
+  @RequestMapping("/admin/user/create") // get
+  public String getCreateUserPage(Model model) { // lấy trang tạo mới user
+    model.addAttribute("newUser", new User()); // tạo một đối tượng User mới để binding với form
+    return "admin/user/create"; // form tạo mới user
+  }
+
+  // khi submit form -> lời gọi đến đây
   @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
   public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
     System.out.println("Create user      " + hoidanit);
@@ -52,10 +56,7 @@ public class UserController {
   }
 }
 
-
-
-
-// viet theo mô hình restAPI 
+// viet theo mô hình restAPI
 // @RestController
 // public class UserController {
 
