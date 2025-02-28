@@ -50,7 +50,11 @@ uri="http://www.springframework.org/tags/form"%>
                     <a href="/admin/user/${user.id}" class="btn btn-success"
                       >View</a
                     >
-                    <button class="btn btn-warning mx-2">Edit</button>
+                    <a
+                      href="/admin/user/update/${user.id}"
+                      class="btn btn-warning mx-2"
+                      >Edit</a
+                    >
                     <button class="btn btn-danger mx-2">Delete</button>
                   </td>
                 </tr>

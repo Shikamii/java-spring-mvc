@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ducna1.learnspring.domain.User;
 import com.ducna1.learnspring.repository.UserRepository;
@@ -51,6 +52,37 @@ public class UserController {
     model.addAttribute("id", id);
     model.addAttribute("user", user);
     return "admin/user/detail-user";
+  }
+
+  @RequestMapping("/admin/user/update/{id}")
+  public String getUpdateUserPage(Model model, @PathVariable("id") long id) {
+    User user = this.userService.getUserById(id);
+    model.addAttribute("user", user);
+    return "admin/user/update-user";
+  }
+
+  // cach 1
+  // @RequestMapping(value = "/admin/user/update/{id}", method =
+  // RequestMethod.POST)
+  // public String updateUserPage(Model model, @ModelAttribute("user") User user)
+  // { // lấy thông tin user truyền lên từ
+  // // form
+  // System.out.println("Update user " + user);
+  // this.userService.handleSaveUser(user);
+  // return "redirect:/admin/user"; // sau khi cập nhật xong user -> chuyển hướng
+  // về trang danh sách user
+  // }
+  // cach 2
+  @PostMapping("/admin/user/update/{id}")
+  public String updateUserPage(Model model, @ModelAttribute("user") User user) {
+    User currentUser = this.userService.getUserById(user.getId());
+    if (currentUser != null) {
+      currentUser.setFullName(user.getFullName());
+      currentUser.setPhone(user.getPhone());
+      currentUser.setAddress(user.getAddress());
+      this.userService.updateUser(currentUser);
+    }
+    return "redirect:/admin/user"; // sau khi cập nhật xong user -> chuyển hướng về trang danh sách user
   }
 
   @RequestMapping("/admin/user/create") // get
