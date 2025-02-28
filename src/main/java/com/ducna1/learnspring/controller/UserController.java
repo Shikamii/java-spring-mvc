@@ -98,6 +98,24 @@ public class UserController {
     this.userService.handleSaveUser(hoidanit);
     return "redirect:/admin/user"; // sau khi tạo xong user -> chuyển hướng về trang danh sách user
   }
+
+  // detele user
+  @GetMapping("/admin/user/delete/{id}")
+  public String getDeleteUserPage(@PathVariable("id") long id, Model model) {
+    model.addAttribute("id", id);
+    User user = new User();
+    user.setId(id);
+    model.addAttribute("deleteUser", user);
+
+    return "admin/user/delete-user";
+  }
+
+  @PostMapping("/admin/user/delete/{id}")
+  public String deleteUserPage(@PathVariable("id") long id, @ModelAttribute("deleteUser") User DeleteUser) {
+    System.out.println("Delete user " + DeleteUser);
+    this.userService.deleteUserById(id); // or this.userService.deleteUserById(DeleteUser.getId());
+    return "redirect:/admin/user";
+  }
 }
 
 // viet theo mô hình restAPI
