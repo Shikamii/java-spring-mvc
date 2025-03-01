@@ -42,7 +42,7 @@ public class UserController {
   public String getUserPage(Model model) {
     // lay ra danh sach user tu service
     List<User> users = this.userService.getAllUsers();
-    model.addAttribute("users", users); // binding danh sách user vào model để hiển thị lên view
+    model.addAttribute("users", users); // binding danh sách user vào model để hiển thị lên view -> truyền biến users vào view
     return "admin/user/table-user"; // trang hiển thị danh sách user
   }
 
@@ -55,9 +55,9 @@ public class UserController {
   }
 
   @RequestMapping("/admin/user/update/{id}")
-  public String getUpdateUserPage(Model model, @PathVariable("id") long id) {
-    User user = this.userService.getUserById(id);
-    model.addAttribute("user", user);
+  public String getUpdateUserPage(Model model, @PathVariable("id") long id) { // lấy id user trên url
+    User user = this.userService.getUserById(id); // lấy thông tin user từ id
+    model.addAttribute("user", user);  // binding user cần cập nhật vào model để hiển thị lên view
     return "admin/user/update-user";
   }
 
@@ -74,7 +74,8 @@ public class UserController {
   // }
   // cach 2
   @PostMapping("/admin/user/update/{id}")
-  public String updateUserPage(Model model, @ModelAttribute("user") User user) {
+  public String updateUserPage(Model model, @ModelAttribute("user") User user) { // lấy thông tin user truyền lên từ form
+    System.out.println("Update user " + user);
     User currentUser = this.userService.getUserById(user.getId());
     if (currentUser != null) {
       currentUser.setFullName(user.getFullName());
@@ -116,6 +117,7 @@ public class UserController {
     this.userService.deleteUserById(id); // or this.userService.deleteUserById(DeleteUser.getId());
     return "redirect:/admin/user";
   }
+  
 }
 
 // viet theo mô hình restAPI

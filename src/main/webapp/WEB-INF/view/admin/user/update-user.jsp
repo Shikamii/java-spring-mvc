@@ -24,7 +24,7 @@ uri="http://www.springframework.org/tags/form"%>
           <h3>Update a user with ${user.id}</h3>
           <hr />
           <form:form
-            action="/admin/user/create"
+            action="/admin/user/update/${user.id}"
             method="POST"
             modelAttribute="user"
           >
