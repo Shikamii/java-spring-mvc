@@ -22,6 +22,18 @@ uri="http://www.springframework.org/tags/form"%>
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(() => {
+        const avatarFile = $("#avatarFile");
+        avatarFile.change(function (e) {
+          const imgURL = URL.createObjectURL(e.target.files[0]);
+          $("#avatarPreview").attr("src", imgURL);
+          $("#avatarPreview").css({ display: "block" });
+        });
+      });
+    </script>
   </head>
   <body class="sb-nav-fixed">
     <jsp:include page="../layout/header.jsp" />
@@ -47,8 +59,9 @@ uri="http://www.springframework.org/tags/form"%>
                     action="/admin/user/create"
                     method="POST"
                     modelAttribute="newUser"
+                    class="row"
                   >
-                    <div class="mb-3">
+                    <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Email:</label>
                       <form:input
                         type="email"
@@ -56,7 +69,7 @@ uri="http://www.springframework.org/tags/form"%>
                         path="email"
                       />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Password:</label>
                       <form:input
                         type="password"
@@ -64,7 +77,7 @@ uri="http://www.springframework.org/tags/form"%>
                         path="password"
                       />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Phone number:</label>
                       <form:input
                         type="text"
@@ -72,7 +85,7 @@ uri="http://www.springframework.org/tags/form"%>
                         path="phone"
                       />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Full name:</label>
                       <form:input
                         type="text"
@@ -80,7 +93,7 @@ uri="http://www.springframework.org/tags/form"%>
                         path="fullName"
                       />
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 col-12">
                       <label class="form-label">Address:</label>
                       <form:input
                         type="text"
@@ -89,9 +102,28 @@ uri="http://www.springframework.org/tags/form"%>
                       />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                      Create
-                    </button>
+                    <div class="mb-3 col-12 col-md-6">
+                      <label class="form-label">Role:</label>
+                      <select class="form-select"">
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="USER">USER</option>
+                      </select>
+                    </div>
+
+                    <div class="mb-3 col-12 col-md-6">
+                      <label class="form-label" for="avatarFile">Avatar:</label>
+                      <input type="file" class="form-control" id="avatarFile" accept=".jpg, .jpeg, .png" />
+                    </div>
+
+                    <div class="col-12 mb-3">
+                      <img alt="avatar_preview" id="avatarPreview" style="max-height: 250px; display: none" />
+                    </div>
+
+                    <div class="col-12 mb-3">
+                      <button type="submit" class="btn btn-primary">
+                        Create
+                      </button>
+                    </div>
                   </form:form>
                 </div>
               </div>
