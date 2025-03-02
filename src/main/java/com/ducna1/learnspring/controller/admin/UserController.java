@@ -1,4 +1,4 @@
-package com.ducna1.learnspring.controller;
+package com.ducna1.learnspring.controller.admin;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class UserController {
     // lay ra danh sach user tu service
     List<User> users = this.userService.getAllUsers();
     model.addAttribute("users", users); // binding danh sách user vào model để hiển thị lên view -> truyền biến users vào view
-    return "admin/user/table-user"; // trang hiển thị danh sách user
+    return "admin/user/show"; // trang hiển thị danh sách user
   }
 
   @RequestMapping("/admin/user/{id}")
